@@ -63,7 +63,7 @@ namespace GitUI.UserControls
 
             DateTime now = _getCurrentTime();
 
-            if (_mouseClicks == 2)
+            if (_mouseClicks == 2 && _lastMouseDown != DateTime.MinValue)
             {
                 int delta = (int)now.Subtract(_lastMouseDown).TotalMilliseconds;
                 if (delta >= 0 && delta < SystemInformation.DoubleClickTime)

@@ -65,10 +65,13 @@ namespace GitUI.UserControls
         private void OnAfterSelect(object sender, TreeViewEventArgs e)
         {
             // If arrow key was used to navigate to this node, don't send OnSelected
-            int delta = (int)DateTime.Now.Subtract(_lastKeyNavigateTime).TotalMilliseconds;
-            if (delta >= 0 && delta < 500)
+            if (_lastKeyNavigateTime != DateTime.MinValue)
             {
-                return;
+                int delta = (int)DateTime.Now.Subtract(_lastKeyNavigateTime).TotalMilliseconds;
+                if (delta >= 0 && delta < 500)
+                {
+                    return;
+                }
             }
 
             AfterSelect(sender, e);
